@@ -1,0 +1,55 @@
+/* ===== CHARLOTTE'S ICE CREAM SHOP STYLES ===== */
+/* Custom CSS for ice cream shop website with warm, inviting color palette */
+
+/* ===== MAIN LAYOUT ===== */
+/* Flexbox container for centered, vertical layout */
+/* Added top padding to account for fixed "Back to Portfolio" button */
+.fullPage {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding-top: 40px; /* Minimal space for the fixed navigation button */
+}
+
+/* ===== TYPOGRAPHY ===== */
+/* Paragraph styling with consistent font and warm brown color */
+p {
+    align-items: center;
+    font-family: Calibri; 
+    font-weight: bold;
+    color: #c87d52; /* Warm brown color matching ice cream theme */
+}
+
+/* ===== BODY STYLING ===== */
+/* Overall page background and font family */
+body {
+    background-color: #fef6f5; /* Light cream background */
+    font-family: Calibri;
+}
+
+/* ===== HEADINGS ===== */
+/* Main heading styling with large, prominent text */
+h1 {
+    font-size: 40px;
+    color: #c87d52; /* Consistent brown color theme */
+}
+
+/* ===== IMAGES ===== */
+/* Uniform sizing and styling for ice cream images */
+/* JavaScript will add hover effects and click interactions */
+img {
+    width: 200px;
+    height: 200px;
+    border-radius: 10px; /* Rounded corners for modern look */
+}
+
+/* ===== HERO IMAGE ===== */
+/* Special styling for the main promotional image */
+.mainPhoto {
+    width: 100%;
+    height: 400px;
+    background-size: cover; /* Ensures image covers full container */
+    background-position: center; /* Centers image within container */
+    background-repeat: no-repeat; /* Prevents image repetition */
+}

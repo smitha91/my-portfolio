@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- ===== DOCUMENT METADATA ===== -->
+    <!-- Premium First-Class Aviation Task Management -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SkyList Executive - Premium Aviation Task Management | Ashley Smith</title>
+    <!-- Link to external CSS file for premium styling -->
+    <link rel="stylesheet" href="style.css">
+    <!-- Premium Google Fonts for luxury aviation-style typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&family=Rajdhani:wght@300;400;500;600;700&family=Exo+2:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body id="top">
+    <!-- ===== PREMIUM PORTFOLIO NAVIGATION ===== -->
+    <!-- Luxury first-class navigation with glass-morphism -->
+    <div class="portfolio-nav">
+        <a href="/" class="portfolio-link">
+            ✈️
+            <span>Portfolio</span>
+        </a>
+    </div>
+
+    <!-- ===== PREMIUM MAIN APPLICATION CONTAINER ===== -->
+    <div class="app-container">
+        
+        <!-- ===== LUXURY HEADER/NAV BAR ===== -->
+        <!-- Premium glass-morphism header with airline first-class aesthetics -->
+        <header class="header">
+            <div class="header-content">
+                <!-- Premium Executive Logo Section -->
+                <div class="logo-section">
+                    <div class="logo">🛩️</div>
+                    <div class="logo-text">
+                        <h1 class="logo-title">SkyList Executive</h1>
+                        <p class="logo-subtitle">Premium Aviation Task Management</p>
+                    </div>
+                </div>
+                
+                <!-- Executive Navigation Menu with First-Class Styling -->
+                <div class="header-buttons">
+                    <button class="nav-btn active" data-section="tasks">
+                        <span class="nav-icon">📋</span>
+                        <span class="nav-text">Flight Tasks</span>
+                        <span class="nav-subtitle">Manage Operations</span>
+                    </button>
+                    <button class="nav-btn" data-section="dashboard">
+                        <span class="nav-icon">🎯</span>
+                        <span class="nav-text">Control Tower</span>
+                        <span class="nav-subtitle">Mission Overview</span>
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <!-- ===== MAIN CONTENT AREA ===== -->
+        <main class="main-content">
+            
+            <!-- ===== TASKS SECTION ===== -->
+            <section id="tasks-section" class="content-section active">
+                
+                <!-- ===== FLIGHT PLAN HEADER ===== -->
+                <div class="section-header">
+                    <h1 class="section-title">✈️ Flight Plan</h1>
+                    <div class="flight-status">
+                        <span class="status-item">
+                            <span class="status-icon">🛫</span>
+                            <span class="status-text">Upcoming: <span id="upcoming-count">0</span></span>
+                        </span>
+                        <span class="status-item">
+                            <span class="status-icon">🛬</span>
+                            <span class="status-text">Landed: <span id="completed-count">0</span></span>
+                        </span>
+                    </div>
+                </div>
+
+                <!-- ===== ADD NEW TASK AREA ===== -->
+                <div class="add-task-container">
+                    <div class="input-group">
+                        <input 
+                            type="text" 
+                            id="new-task-input" 
+                            class="task-input" 
+                            placeholder="Log new flight..."
+                            maxlength="100"
+                        >
+                        <button id="add-task-btn" class="takeoff-btn">
+                            <span class="btn-icon">🛫</span>
+                            <span class="btn-text">Takeoff</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- ===== TASK FILTERS ===== -->
+                <div class="filters-container">
+                    <div class="filter-tabs">
+                        <button class="filter-tab active" data-filter="all">
+                            <span class="tab-icon">✈️</span>
+                            <span class="tab-text">All Flights</span>
+                        </button>
+                        <button class="filter-tab" data-filter="pending">
+                            <span class="tab-icon">🛫</span>
+                            <span class="tab-text">Scheduled</span>
+                        </button>
+                        <button class="filter-tab" data-filter="completed">
+                            <span class="tab-icon">🛬</span>
+                            <span class="tab-text">Landed</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- ===== TASK LIST PANEL ===== -->
+                <div class="tasks-container">
+                    <div id="tasks-list" class="tasks-list">
+                        <!-- Tasks will be dynamically generated by JavaScript -->
+                        <div class="empty-state" id="empty-state">
+                            <div class="empty-icon">🛩️</div>
+                            <h3>No flights scheduled</h3>
+                            <p>Add your first task to begin your flight plan!</p>
+                        </div>
+                    </div>
+                </div>
+
+            </section>
+
+            <!-- ===== DASHBOARD SECTION ===== -->
+            <section id="dashboard-section" class="content-section">
+                <div class="section-header">
+                    <h1 class="section-title">🎯 Control Tower Dashboard</h1>
+                </div>
+                
+                <!-- ===== STATS GRID ===== -->
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon">✈️</div>
+                        <div class="stat-info">
+                            <h3 class="stat-number" id="total-tasks">0</h3>
+                            <p class="stat-label">Total Flights</p>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon">🛫</div>
+                        <div class="stat-info">
+                            <h3 class="stat-number" id="pending-tasks">0</h3>
+                            <p class="stat-label">Upcoming Takeoffs</p>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon">🛬</div>
+                        <div class="stat-info">
+                            <h3 class="stat-number" id="completed-tasks">0</h3>
+                            <p class="stat-label">Successful Landings</p>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon">📊</div>
+                        <div class="stat-info">
+                            <h3 class="stat-number" id="completion-rate">0%</h3>
+                            <p class="stat-label">Flight Success Rate</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ===== PILOT PROFILE ===== -->
+                <div class="pilot-profile">
+                    <div class="profile-header">
+                        <div class="pilot-badge">👨‍✈️</div>
+                        <div class="pilot-info">
+                            <h3 class="pilot-name">Captain Navigator</h3>
+                            <p class="pilot-rank">Senior Flight Coordinator</p>
+                        </div>
+                    </div>
+                    <div class="profile-stats">
+                        <div class="profile-stat">
+                            <span class="stat-label">Flight Hours:</span>
+                            <span class="stat-value" id="flight-hours">0</span>
+                        </div>
+                        <div class="profile-stat">
+                            <span class="stat-label">Mission Status:</span>
+                            <span class="stat-value status-active">Active</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+        
+        <!-- ===== ROLE-PLAYING NEXT STEP ===== -->
+        <div class="next-step-section">
+            <h3>🛩️ Ready for Takeoff!</h3>
+            <p>Excellent work managing your pre-flight tasks! Your crew is checked in, tasks are organized, and everything is ready. Now it's time for the most exciting part - take control of the aircraft and experience professional flight simulation.</p>
+            <a href="/takeflight" class="next-step-btn">
+                ✈️ Take Flight - Launch Simulator
+                <span class="next-step-subtitle">Step 3: Pilot Your Aircraft</span>
+            </a>
+        </div>
+
+        <!-- ===== FOOTER ===== -->
+        <footer class="footer">
+            <div class="runway-line"></div>
+            <p class="footer-text">Powered by SkyList Control Tower</p>
+        </footer>
+
+    </div>
+
+    <!-- ===== PREMIUM BACK TO TOP AIRPLANE ===== -->
+    <a href="#top" class="back-to-top" id="backToTop">
+        <i class="fas fa-plane"></i>
+    </a>
+
+    <!-- ===== JAVASCRIPT ===== -->
+    <!-- Load external JavaScript file for task management functionality -->
+    <script src="script.js"></script>
+    
+    <!-- Premium back to top airplane visibility script -->
+    <script>
+        window.addEventListener('scroll', function() {
+            const backToTop = document.getElementById('backToTop');
+            if (window.pageYOffset > 300) {
+                backToTop.classList.add('show');
+            } else {
+                backToTop.classList.remove('show');
+            }
+        });
+
+        // Smooth scroll to top on click
+        document.getElementById('backToTop').addEventListener('click', function(e) {
+            e.preventDefault();
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,975 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aviation Crew API - Interactive Demo</title>
+    <style>
+        /* ===== PREMIUM AVIATION CREW API STYLING ===== */
+        /* Import premium fonts */
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap');
+        
+        /* ===== CSS RESET AND FOUNDATION ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(145deg, #0a1628 0%, #1b365d 50%, #2c5aa0 100%);
+            color: #F7FAFC;
+            line-height: 1.6;
+            min-height: 100vh;
+            position: relative;
+            overflow-x: hidden;
+        }
+        
+        /* Premium aviation runway lines background pattern */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: 
+                repeating-linear-gradient(
+                    90deg,
+                    transparent,
+                    transparent 60px,
+                    rgba(99, 179, 237, 0.02) 62px,
+                    rgba(99, 179, 237, 0.02) 64px
+                ),
+                repeating-linear-gradient(
+                    0deg,
+                    transparent,
+                    transparent 120px,
+                    rgba(99, 179, 237, 0.015) 122px,
+                    rgba(99, 179, 237, 0.015) 124px
+                );
+            z-index: -1;
+            pointer-events: none;
+        }
+        
+        /* Main container with premium cabin feel */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+            position: relative;
+        }
+        
+        /* Premium header styling */
+        .header {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding: 3rem 2rem;
+            background: linear-gradient(145deg, rgba(10, 22, 40, 0.95), rgba(27, 54, 93, 0.85));
+            border: 1px solid rgba(99, 179, 237, 0.15);
+            border-radius: 20px;
+            position: relative;
+            backdrop-filter: blur(20px);
+            overflow: hidden;
+        }
+        
+        /* Header premium accent */
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(to right, rgba(99, 179, 237, 0.3), rgba(144, 205, 244, 0.5), rgba(99, 179, 237, 0.3));
+            animation: premiumGlow 4s ease-in-out infinite alternate;
+        }
+        
+        @keyframes premiumGlow {
+            0% { opacity: 0.6; }
+            100% { opacity: 1; }
+        }
+        
+        /* Navigation row styling */
+        .nav-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        
+        /* Back to portfolio link - premium styling */
+        .back-link {
+            text-decoration: none;
+            color: #63B3ED;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 20px;
+            border: 1px solid rgba(99, 179, 237, 0.3);
+            border-radius: 25px;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            background: rgba(99, 179, 237, 0.08);
+            font-family: 'Orbitron', monospace;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+        
+        .back-link:hover {
+            background: rgba(99, 179, 237, 0.15);
+            border-color: rgba(99, 179, 237, 0.5);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(99, 179, 237, 0.15);
+            color: #F7FAFC;
+        }
+        
+        /* System status badge */
+        .system-badge {
+            background: rgba(72, 187, 120, 0.15);
+            color: #48BB78;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            letter-spacing: 0.05em;
+            border: 1px solid rgba(72, 187, 120, 0.3);
+            font-family: 'Orbitron', monospace;
+        }
+        
+        /* Main title styling */
+        h1 {
+            font-size: 3rem;
+            font-weight: 300;
+            color: #F7FAFC;
+            margin-bottom: 1rem;
+            letter-spacing: -0.02em;
+            text-shadow: 0 2px 20px rgba(99, 179, 237, 0.3);
+            font-family: 'Inter', sans-serif;
+            line-height: 1.1;
+        }
+        
+        /* Subtitle styling */
+        .header p {
+            font-size: 1.125rem;
+            color: #CBD5E0;
+            max-width: 600px;
+            margin: 0 auto;
+            border-left: 2px solid rgba(99, 179, 237, 0.4);
+            padding-left: 20px;
+            font-weight: 400;
+        }
+        
+        /* Status bar - premium design */
+        .status-bar {
+            background: linear-gradient(145deg, rgba(72, 187, 120, 0.15), rgba(72, 187, 120, 0.1));
+            color: #48BB78;
+            padding: 1rem 2rem;
+            margin: 2rem 0;
+            border-radius: 15px;
+            text-align: center;
+            font-weight: 500;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border: 1px solid rgba(72, 187, 120, 0.3);
+            backdrop-filter: blur(10px);
+            font-family: 'Orbitron', monospace;
+            letter-spacing: 0.05em;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        
+        /* User info panel */
+        .user-info {
+            background: linear-gradient(145deg, rgba(10, 22, 40, 0.8), rgba(27, 54, 93, 0.6));
+            border: 1px solid rgba(99, 179, 237, 0.15);
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 2rem 0;
+            display: none;
+            backdrop-filter: blur(20px);
+        }
+        
+        /* Section styling - premium cabin sections */
+        .login-section, .demo-section {
+            background: linear-gradient(145deg, rgba(10, 22, 40, 0.8), rgba(27, 54, 93, 0.6));
+            border: 1px solid rgba(99, 179, 237, 0.15);
+            border-radius: 20px;
+            padding: 3rem;
+            margin: 3rem 0;
+            position: relative;
+            backdrop-filter: blur(20px);
+            overflow: hidden;
+        }
+        
+        /* Section premium grid background */
+        .login-section::before, .demo-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: 
+                linear-gradient(rgba(99, 179, 237, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(99, 179, 237, 0.03) 1px, transparent 1px);
+            background-size: 30px 30px;
+            z-index: 0;
+        }
+        
+        /* Section content positioning */
+        .login-section > *, .demo-section > * {
+            position: relative;
+            z-index: 1;
+        }
+        
+        /* Section headers */
+        h2, h3 {
+            color: #90CDF4;
+            font-family: 'Orbitron', monospace;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+        }
+        
+        h2 {
+            font-size: 1.5rem;
+        }
+        
+        h3 {
+            font-size: 1.25rem;
+        }
+        
+        /* Form styling */
+        .login-form {
+            display: grid;
+            gap: 1.5rem;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        label {
+            margin-bottom: 8px;
+            color: #90CDF4;
+            font-weight: 500;
+            font-family: 'Inter', sans-serif;
+            letter-spacing: 0.05em;
+        }
+        
+        input, select {
+            padding: 15px 20px;
+            border: 1px solid rgba(99, 179, 237, 0.2);
+            border-radius: 12px;
+            background: rgba(10, 22, 40, 0.6);
+            color: #F7FAFC;
+            font-size: 1rem;
+            font-family: 'Inter', sans-serif;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+        
+        input:focus, select:focus {
+            outline: none;
+            border-color: #63B3ED;
+            box-shadow: 0 0 0 3px rgba(99, 179, 237, 0.1);
+            background: rgba(10, 22, 40, 0.8);
+        }
+        
+        /* Demo users section */
+        .demo-users {
+            background: rgba(237, 137, 54, 0.1);
+            border: 1px solid rgba(237, 137, 54, 0.3);
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 2rem 0;
+        }
+        
+        .demo-users h4 {
+            color: #ED8936;
+            margin-bottom: 1rem;
+            font-family: 'Orbitron', monospace;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+        
+        .demo-user {
+            background: rgba(10, 22, 40, 0.6);
+            padding: 1.5rem;
+            margin: 1rem 0;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid rgba(99, 179, 237, 0.1);
+            backdrop-filter: blur(10px);
+        }
+        
+        .demo-user:hover {
+            background: rgba(99, 179, 237, 0.1);
+            border-color: #63B3ED;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(99, 179, 237, 0.15);
+        }
+        
+        .demo-user strong {
+            color: #F7FAFC;
+            font-size: 1.1rem;
+        }
+        
+        .demo-user small {
+            color: #CBD5E0;
+            font-family: 'Courier New', monospace;
+        }
+        
+        /* Endpoint styling */
+        .endpoint {
+            background: linear-gradient(145deg, rgba(10, 22, 40, 0.7), rgba(27, 54, 93, 0.5));
+            border: 1px solid rgba(99, 179, 237, 0.15);
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 2rem 0;
+            opacity: 0.5;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            backdrop-filter: blur(10px);
+        }
+        
+        .endpoint.unlocked {
+            opacity: 1;
+            border-color: rgba(72, 187, 120, 0.3);
+        }
+        
+        .endpoint.unlocked:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(99, 179, 237, 0.1);
+        }
+        
+        .endpoint.locked::before {
+            content: "🔒 Crew Login Required";
+            display: block;
+            background: linear-gradient(145deg, rgba(220, 53, 69, 0.2), rgba(220, 53, 69, 0.1));
+            color: #F56565;
+            padding: 12px 20px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            text-align: center;
+            font-weight: 500;
+            border: 1px solid rgba(220, 53, 69, 0.3);
+            font-family: 'Orbitron', monospace;
+            letter-spacing: 0.05em;
+        }
+        
+        /* Button styling - premium aviation controls */
+        button {
+            background: linear-gradient(145deg, #007bff, #0056b3);
+            color: white;
+            border: none;
+            padding: 15px 25px;
+            border-radius: 12px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 500;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            margin: 8px;
+            font-family: 'Inter', sans-serif;
+            letter-spacing: 0.05em;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s;
+        }
+        
+        button:hover::before {
+            left: 100%;
+        }
+        
+        button:hover:not(:disabled) {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 123, 255, 0.3);
+        }
+        
+        button:disabled {
+            background: linear-gradient(145deg, #6c757d, #5a6268);
+            cursor: not-allowed;
+            opacity: 0.6;
+        }
+        
+        .btn-login {
+            background: linear-gradient(145deg, #28a745, #218838);
+        }
+        
+        .btn-login:hover {
+            box-shadow: 0 8px 25px rgba(40, 167, 69, 0.3);
+        }
+        
+        .btn-logout {
+            background: linear-gradient(145deg, #dc3545, #c82333);
+        }
+        
+        .btn-logout:hover {
+            box-shadow: 0 8px 25px rgba(220, 53, 69, 0.3);
+        }
+        
+        /* Result display - premium terminal styling */
+        .result {
+            background: rgba(10, 22, 40, 0.9);
+            border: 1px solid rgba(99, 179, 237, 0.2);
+            padding: 2rem;
+            margin: 1.5rem 0;
+            border-radius: 12px;
+            font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+            font-size: 0.9rem;
+            white-space: pre-wrap;
+            max-height: 400px;
+            overflow-y: auto;
+            backdrop-filter: blur(10px);
+            position: relative;
+        }
+        
+        .result::before {
+            content: 'SYSTEM OUTPUT';
+            position: absolute;
+            top: -1px;
+            right: 15px;
+            background: rgba(10, 22, 40, 0.9);
+            color: #90CDF4;
+            padding: 4px 12px;
+            font-size: 0.7rem;
+            font-family: 'Orbitron', monospace;
+            letter-spacing: 0.1em;
+            border-radius: 0 0 8px 8px;
+        }
+        
+        .success { border-color: #48BB78; }
+        .error { border-color: #F56565; }
+        
+        .url { 
+            color: #ED8936; 
+            font-weight: 500;
+        }
+        
+        /* Role badge - premium styling */
+        .role-badge {
+            display: inline-block;
+            background: linear-gradient(145deg, #007bff, #0056b3);
+            color: white;
+            padding: 6px 12px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            margin-left: 12px;
+            font-family: 'Orbitron', monospace;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+        }
+        
+        /* Utility classes */
+        .hidden { 
+            display: none; 
+        }
+        
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .container {
+                padding: 1rem;
+            }
+            
+            .header {
+                padding: 2rem 1rem;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .login-section, .demo-section {
+                padding: 2rem 1rem;
+            }
+            
+            .nav-row {
+                flex-direction: column;
+                align-items: stretch;
+            }
+        }
+        
+        /* Scrollbar styling */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: rgba(10, 22, 40, 0.5);
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: rgba(99, 179, 237, 0.3);
+            border-radius: 4px;
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+            background: rgba(99, 179, 237, 0.5);
+        }
+        
+        /* Next Step Section */
+        .next-step-section {
+            background: linear-gradient(135deg, rgba(34, 197, 94, 0.8) 0%, rgba(16, 185, 129, 0.6) 100%);
+            border: 2px solid rgba(34, 197, 94, 0.4);
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 3rem 0 2rem 0;
+            text-align: center;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 10px 30px rgba(34, 197, 94, 0.2);
+        }
+
+        .next-step-section h3 {
+            font-family: 'Orbitron', monospace;
+            color: #F7FAFC;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        .next-step-section p {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 1rem;
+            line-height: 1.6;
+            margin-bottom: 2rem;
+        }
+
+        .next-step-btn {
+            display: inline-block;
+            background: linear-gradient(135deg, #059669 0%, #10B981 50%, #34D399 100%);
+            color: white;
+            text-decoration: none;
+            padding: 1.2rem 2.5rem;
+            border-radius: 50px;
+            font-family: 'Orbitron', monospace;
+            font-weight: 600;
+            font-size: 1rem;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            transition: all 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+            box-shadow: 0 8px 24px rgba(5, 150, 105, 0.4);
+            border: 2px solid rgba(52, 211, 153, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .next-step-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: left 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+        }
+
+        .next-step-btn:hover::before {
+            left: 100%;
+        }
+
+        .next-step-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 36px rgba(5, 150, 105, 0.5);
+            border-color: rgba(52, 211, 153, 0.6);
+        }
+
+        .next-step-subtitle {
+            display: block;
+            font-size: 0.8rem;
+            font-weight: 400;
+            margin-top: 0.5rem;
+            opacity: 0.9;
+            letter-spacing: 0.03em;
+        }
+    </style>
+</head>
+<body>
+    <div class="container" id="top">
+        <div class="header">
+            <div class="nav-row">
+                <a href="/" class="back-link">
+                    ✈️
+                    <span>Back to Portfolio</span>
+                </a>
+                <span class="system-badge">Aviation Demo</span>
+            </div>
+            <h1>🚁 Aviation Crew Communication System</h1>
+            <p>Interactive API Demo - Login to explore crew management features</p>
+        </div>
+
+    <div id="status-bar" class="status-bar">
+        <span>✅ System Online</span>
+        <span id="connection-status">Not Connected</span>
+    </div>
+
+    <!-- Login Section -->
+    <div id="login-section" class="login-section">
+        <h2>🔐 Crew Login</h2>
+        <p>Login to access the aviation crew communication system</p>
+        
+        <div class="demo-users">
+            <h4>Demo Users (Click to auto-fill):</h4>
+            <div class="demo-user" onclick="fillLogin('AA12345', 'password123', 'pilot')">
+                <strong>Captain Sarah Johnson</strong> - Pilot<br>
+                <small>ID: AA12345 | Password: password123</small>
+            </div>
+            <div class="demo-user" onclick="fillLogin('FA67890', 'password123', 'flight_attendant')">
+                <strong>Emily Chen</strong> - Flight Attendant<br>
+                <small>ID: FA67890 | Password: password123</small>
+            </div>
+            <div class="demo-user" onclick="fillLogin('GA11111', 'password123', 'gate_agent')">
+                <strong>Mike Rodriguez</strong> - Gate Agent<br>
+                <small>ID: GA11111 | Password: password123</small>
+            </div>
+        </div>
+
+        <form class="login-form" onsubmit="handleLogin(event)">
+            <div class="form-group">
+                <label for="employee-id">Employee ID:</label>
+                <input type="text" id="employee-id" placeholder="e.g., AA12345" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="password" id="password" placeholder="Enter password" required>
+            </div>
+            <button type="submit" class="btn-login">Login to System</button>
+        </form>
+    </div>
+
+    <!-- User Info (shown after login) -->
+    <div id="user-info" class="user-info">
+        <h3>Welcome, <span id="user-name"></span>! <span id="user-role" class="role-badge"></span></h3>
+        <p><strong>Employee ID:</strong> <span id="user-id"></span></p>
+        <p><strong>Access Level:</strong> <span id="access-level"></span></p>
+        <button onclick="logout()" class="btn-logout">Logout</button>
+    </div>
+
+    <!-- Demo Section (unlocked after login) -->
+    <div id="demo-section" class="demo-section hidden">
+        <h2>🛠️ System Features</h2>
+        <p>Explore the API endpoints available to your role:</p>
+
+        <div class="endpoint locked" id="health-endpoint">
+            <h3>System Health Check</h3>
+            <p><span class="url">GET /health</span></p>
+            <button id="health-btn" onclick="testEndpoint('/health', 'GET', 'health-result')" disabled>Check System Health</button>
+            <div id="health-result" class="result">Login required to access system status...</div>
+        </div>
+
+        <div class="endpoint locked" id="messages-endpoint">
+            <h3>Crew Messages</h3>
+            <p><span class="url">GET /api/messages</span></p>
+            <button id="messages-btn" onclick="getMessages()" disabled>View My Messages</button>
+            <button id="send-message-btn" onclick="showSendMessage()" disabled>Send Message</button>
+            <div id="messages-result" class="result">Login required to access messages...</div>
+        </div>
+
+        <div class="endpoint locked" id="crew-endpoint">
+            <h3>Crew Management</h3>
+            <p><span class="url">GET /api/crew</span></p>
+            <button id="crew-btn" onclick="getCrew()" disabled>View Crew List</button>
+            <div id="crew-result" class="result">Login required to access crew information...</div>
+        </div>
+
+        <div class="endpoint locked" id="profile-endpoint">
+            <h3>My Profile</h3>
+            <p><span class="url">GET /api/auth/me</span></p>
+            <button id="profile-btn" onclick="getProfile()" disabled>View My Profile</button>
+            <div id="profile-result" class="result">Login required to access profile...</div>
+        </div>
+        
+        <!-- Role-Playing Next Step Navigation -->
+        <div class="next-step-section">
+            <h3>🎯 Next: Prepare for Flight</h3>
+            <p>Great job checking in and reviewing your crew communications! Now it's time to prepare for your flight by managing your pre-flight tasks and coordinating with the crew.</p>
+            <a href="/taskmanagement" class="next-step-btn">
+                📋 Go to Flight Task Management
+                <span class="next-step-subtitle">Step 2: Organize Your Pre-Flight Checklist</span>
+            </a>
+        </div>
+    </div>
+
+    <script>
+        const API_BASE = 'http://localhost:3000';
+        let currentUser = null;
+        let authToken = null;
+
+        // Auto-fill login form
+        function fillLogin(employeeId, password, role) {
+            document.getElementById('employee-id').value = employeeId;
+            document.getElementById('password').value = password;
+            
+            // Update status
+            document.getElementById('status-bar').innerHTML = 
+                `<span>✅ Demo user selected: ${role}</span><span>Ready to Login</span>`;
+        }
+
+        // Handle login form submission
+        async function handleLogin(event) {
+            event.preventDefault();
+            
+            const employeeId = document.getElementById('employee-id').value;
+            const password = document.getElementById('password').value;
+            
+            try {
+                const response = await fetch(`${API_BASE}/api/auth/login`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ employeeId, password })
+                });
+
+                const data = await response.json();
+                
+                if (response.ok) {
+                    // Store user data
+                    currentUser = data.user;
+                    authToken = data.token;
+                    
+                    // Update UI
+                    showLoggedInState();
+                    updateConnectionStatus('Connected', true);
+                    
+                } else {
+                    throw new Error(data.message || 'Login failed');
+                }
+                
+            } catch (error) {
+                updateConnectionStatus(`Login Error: ${error.message}`, false);
+            }
+        }
+
+        // Show logged in state
+        function showLoggedInState() {
+            // Hide login section
+            document.getElementById('login-section').classList.add('hidden');
+            
+            // Show user info
+            const userInfo = document.getElementById('user-info');
+            userInfo.style.display = 'block';
+            document.getElementById('user-name').textContent = currentUser.name || currentUser.employeeId;
+            document.getElementById('user-role').textContent = currentUser.role.toUpperCase();
+            document.getElementById('user-id').textContent = currentUser.employeeId;
+            document.getElementById('access-level').textContent = getRoleDescription(currentUser.role);
+            
+            // Show demo section
+            document.getElementById('demo-section').classList.remove('hidden');
+            
+            // Smooth scroll to top of page after successful login
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+            
+            // Unlock endpoints based on role
+            unlockEndpoints();
+        }
+
+        // Get role description
+        function getRoleDescription(role) {
+            const descriptions = {
+                pilot: 'Flight Operations & Crew Coordination',
+                flight_attendant: 'Passenger Service & Safety',
+                gate_agent: 'Ground Operations & Boarding'
+            };
+            return descriptions[role] || 'Standard Access';
+        }
+
+        // Unlock endpoints after login
+        function unlockEndpoints() {
+            const endpoints = document.querySelectorAll('.endpoint');
+            endpoints.forEach(endpoint => {
+                endpoint.classList.remove('locked');
+                endpoint.classList.add('unlocked');
+            });
+            
+            // Enable buttons
+            const buttons = document.querySelectorAll('#demo-section button');
+            buttons.forEach(btn => btn.disabled = false);
+            
+            // Update result texts
+            document.getElementById('health-result').textContent = 'Click to check system health...';
+            document.getElementById('messages-result').textContent = 'Click to view your messages...';
+            document.getElementById('crew-result').textContent = 'Click to view crew information...';
+            document.getElementById('profile-result').textContent = 'Click to view your profile...';
+        }
+
+        // Logout function
+        function logout() {
+            currentUser = null;
+            authToken = null;
+            
+            // Show login section
+            document.getElementById('login-section').classList.remove('hidden');
+            
+            // Hide user info and demo section
+            document.getElementById('user-info').style.display = 'none';
+            document.getElementById('demo-section').classList.add('hidden');
+            
+            // Reset form
+            document.getElementById('employee-id').value = '';
+            document.getElementById('password').value = '';
+            
+            updateConnectionStatus('Not Connected', false);
+        }
+
+        // Update connection status
+        function updateConnectionStatus(message, isConnected) {
+            const statusElement = document.getElementById('connection-status');
+            statusElement.textContent = message;
+            
+            const statusBar = document.getElementById('status-bar');
+            if (isConnected) {
+                statusBar.style.background = '#28a745';
+                statusBar.innerHTML = `<span>✅ System Online</span><span>${message}</span>`;
+            } else {
+                statusBar.style.background = '#dc3545';
+                statusBar.innerHTML = `<span>❌ ${message}</span><span>Not Connected</span>`;
+            }
+        }
+
+        // API call functions
+        async function testEndpoint(endpoint, method = 'GET', resultDivId, data = null) {
+            const resultDiv = document.getElementById(resultDivId);
+            
+            try {
+                const options = {
+                    method: method,
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json'
+                    }
+                };
+                
+                // Add auth token if available
+                if (authToken) {
+                    options.headers['Authorization'] = `Bearer ${authToken}`;
+                }
+                
+                if (data) {
+                    options.body = JSON.stringify(data);
+                }
+                
+                resultDiv.textContent = `🔄 Testing ${method} ${endpoint}...`;
+                resultDiv.className = 'result';
+                
+                const response = await fetch(API_BASE + endpoint, options);
+                const responseData = await response.json();
+                
+                if (response.ok) {
+                    resultDiv.textContent = `✅ Success (${response.status}):\n` + 
+                                          JSON.stringify(responseData, null, 2);
+                    resultDiv.className = 'result success';
+                } else {
+                    throw new Error(`HTTP ${response.status}: ${responseData.message || response.statusText}`);
+                }
+                
+            } catch (error) {
+                resultDiv.textContent = `❌ Error:\n${error.message}`;
+                resultDiv.className = 'result error';
+            }
+        }
+
+        // Specific API functions
+        async function getMessages() {
+            await testEndpoint('/api/messages', 'GET', 'messages-result');
+        }
+
+        async function getCrew() {
+            await testEndpoint('/api/crew', 'GET', 'crew-result');
+        }
+
+        async function getProfile() {
+            await testEndpoint('/api/auth/me', 'GET', 'profile-result');
+        }
+
+        function showSendMessage() {
+            const resultDiv = document.getElementById('messages-result');
+            resultDiv.innerHTML = `
+                <div style="background: #2a2a2a; padding: 15px; border-radius: 6px; margin: 10px 0;">
+                    <h4 style="color: #00bcd4; margin-top: 0;">Send New Message</h4>
+                    <textarea id="message-text" placeholder="Enter your message..." style="width: 100%; height: 80px; background: #1a1a1a; color: white; border: 1px solid #555; border-radius: 4px; padding: 10px; resize: vertical;"></textarea>
+                    <br><br>
+                    <button onclick="sendMessage()" style="background: #28a745;">Send Message</button>
+                    <button onclick="getMessages()" style="background: #6c757d;">Cancel</button>
+                </div>
+            `;
+        }
+
+        async function sendMessage() {
+            const messageText = document.getElementById('message-text').value;
+            if (!messageText.trim()) {
+                alert('Please enter a message');
+                return;
+            }
+            
+            const messageData = {
+                content: messageText,
+                recipient: 'crew',
+                priority: 'normal'
+            };
+            
+            await testEndpoint('/api/messages', 'POST', 'messages-result', messageData);
+        }
+
+        // Initialize page
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('Aviation Crew System initialized');
+            updateConnectionStatus('System Ready', false);
+        });
+
+        // Back to top airplane visibility
+        window.addEventListener('scroll', function() {
+            const backToTop = document.getElementById('backToTop');
+            if (window.pageYOffset > 300) {
+                backToTop.style.opacity = '1';
+                backToTop.style.visibility = 'visible';
+            } else {
+                backToTop.style.opacity = '0';
+                backToTop.style.visibility = 'hidden';
+            }
+        });
+    </script>
+    
+    <!-- ===== BACK TO TOP AIRPLANE ===== -->
+    <div id="backToTop" style="position: fixed; bottom: 30px; right: 30px; z-index: 1000; opacity: 0; visibility: hidden; transition: all 0.3s ease;">
+        <a href="#top" style="display: flex; align-items: center; justify-content: center; width: 60px; height: 60px; background: linear-gradient(145deg, #2563eb, #1d4ed8); color: white; border-radius: 50%; text-decoration: none; box-shadow: 0 4px 15px rgba(37, 99, 235, 0.3); transition: all 0.3s ease; font-size: 24px;" 
+           onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='0 8px 25px rgba(37, 99, 235, 0.4)'"
+           onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 15px rgba(37, 99, 235, 0.3)'">
+            ✈️
+        </a>
+    </div>
+    
+    </div> <!-- Close container -->
+</body>
+</html>

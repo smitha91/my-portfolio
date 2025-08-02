@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SkyLink Menu - First Class Dining Experience</title>
+    
+    <!-- Premium Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <!-- Custom Stylesheet -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- ===== PREMIUM PORTFOLIO NAVIGATION ===== -->
+    <nav class="portfolio-nav">
+        <a href="../landingpage/index.html" class="portfolio-link">
+            <i class="fas fa-arrow-left"></i>
+            <span>Return to Portfolio</span>
+        </a>
+    </nav>
+
+    <!-- ===== MAIN APPLICATION CONTAINER ===== -->
+    <div class="app-container">
+        <!-- ===== LUXURY HEADER ===== -->
+        <header class="header">
+            <div class="header-content">
+                <div class="logo-section">
+                    <div class="logo">
+                        <i class="fas fa-utensils"></i>
+                    </div>
+                    <div class="logo-text">
+                        <h1 class="logo-title">SkyLink Menu</h1>
+                        <p class="logo-subtitle">First Class Dining Experience</p>
+                    </div>
+                </div>
+                
+                <div class="flight-status">
+                    <div class="status-item">
+                        <i class="fas fa-clock status-icon"></i>
+                        <span>Service Hours: 24/7</span>
+                    </div>
+                    <div class="status-item">
+                        <i class="fas fa-plane status-icon"></i>
+                        <span>At Cruising Altitude</span>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- ===== MAIN CONTENT AREA ===== -->
+        <main class="main-content">
+            <!-- Welcome Section -->
+            <section class="welcome-section">
+                <div class="section-header">
+                    <div class="section-title">
+                        <i class="fas fa-crown"></i>
+                        <span>Welcome Aboard</span>
+                    </div>
+                </div>
+                <p class="welcome-text">
+                    Experience culinary excellence at 35,000 feet. Our executive chef has curated three 
+                    extraordinary dining experiences exclusively for our first-class passengers.
+                </p>
+            </section>
+
+            <!-- Menu Selection -->
+            <section class="menu-section">
+                <div class="section-header">
+                    <div class="section-title">
+                        <i class="fas fa-star"></i>
+                        <span>Executive Menu Selection</span>
+                    </div>
+                </div>
+                
+                <div class="meals-grid">
+                    <!-- Meal 1: Prime Beef Tenderloin -->
+                    <div class="meal-card" data-meal="prime-beef">
+                        <div class="meal-image">
+                            <i class="fas fa-drumstick-bite"></i>
+                        </div>
+                        <div class="meal-content">
+                            <h3 class="meal-title">Prime Beef Tenderloin</h3>
+                            <p class="meal-subtitle">The Executive Choice</p>
+                            <div class="meal-description">
+                                <p>Premium grass-fed beef tenderloin, pan-seared to perfection with truffle butter, 
+                                   accompanied by roasted seasonal vegetables and garlic mashed potatoes.</p>
+                            </div>
+                            <div class="meal-details">
+                                <div class="detail-item">
+                                    <i class="fas fa-clock"></i>
+                                    <span>Preparation: 25 mins</span>
+                                </div>
+                                <div class="detail-item">
+                                    <i class="fas fa-star"></i>
+                                    <span>Chef's Signature</span>
+                                </div>
+                            </div>
+                            <button class="order-btn" data-meal="prime-beef">
+                                <i class="fas fa-check"></i>
+                                <span>Select This Meal</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Meal 2: Atlantic Salmon -->
+                    <div class="meal-card" data-meal="atlantic-salmon">
+                        <div class="meal-image">
+                            <i class="fas fa-fish"></i>
+                        </div>
+                        <div class="meal-content">
+                            <h3 class="meal-title">Atlantic Salmon</h3>
+                            <p class="meal-subtitle">The Coastal Experience</p>
+                            <div class="meal-description">
+                                <p>Wild-caught Atlantic salmon glazed with honey-soy reduction, served with 
+                                   jasmine rice pilaf and crisp asparagus spears with hollandaise sauce.</p>
+                            </div>
+                            <div class="meal-details">
+                                <div class="detail-item">
+                                    <i class="fas fa-clock"></i>
+                                    <span>Preparation: 20 mins</span>
+                                </div>
+                                <div class="detail-item">
+                                    <i class="fas fa-leaf"></i>
+                                    <span>Heart Healthy</span>
+                                </div>
+                            </div>
+                            <button class="order-btn" data-meal="atlantic-salmon">
+                                <i class="fas fa-check"></i>
+                                <span>Select This Meal</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Meal 3: Vegetarian Delight -->
+                    <div class="meal-card" data-meal="vegetarian-delight">
+                        <div class="meal-image">
+                            <i class="fas fa-seedling"></i>
+                        </div>
+                        <div class="meal-content">
+                            <h3 class="meal-title">Garden Symphony</h3>
+                            <p class="meal-subtitle">The Botanical Choice</p>
+                            <div class="meal-description">
+                                <p>Artisanal stuffed portobello mushroom with quinoa, sun-dried tomatoes, 
+                                   and goat cheese, accompanied by grilled vegetables and herb-infused couscous.</p>
+                            </div>
+                            <div class="meal-details">
+                                <div class="detail-item">
+                                    <i class="fas fa-clock"></i>
+                                    <span>Preparation: 18 mins</span>
+                                </div>
+                                <div class="detail-item">
+                                    <i class="fas fa-seedling"></i>
+                                    <span>Plant-Based</span>
+                                </div>
+                            </div>
+                            <button class="order-btn" data-meal="vegetarian-delight">
+                                <i class="fas fa-check"></i>
+                                <span>Select This Meal</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Order Confirmation Section -->
+            <section class="order-section" id="orderSection" style="display: none;">
+                <div class="section-header">
+                    <div class="section-title">
+                        <i class="fas fa-clipboard-check"></i>
+                        <span>Order Confirmation</span>
+                    </div>
+                </div>
+                
+                <div class="order-summary">
+                    <div class="selected-meal">
+                        <h3 id="selectedMealTitle">Your Selection</h3>
+                        <p id="selectedMealDescription">Meal details will appear here</p>
+                    </div>
+                    
+                    <div class="order-actions">
+                        <button class="confirm-btn" id="confirmOrder">
+                            <i class="fas fa-utensils"></i>
+                            <span>Confirm Order</span>
+                        </button>
+                        <button class="cancel-btn" id="cancelOrder">
+                            <i class="fas fa-times"></i>
+                            <span>Choose Different Meal</span>
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Success Message -->
+            <section class="success-section" id="successSection" style="display: none;">
+                <div class="success-content">
+                    <div class="success-icon">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <h3>Order Confirmed!</h3>
+                    <p>Your first-class meal is being prepared by our executive chef. 
+                       Please enjoy your flight while we prepare your dining experience.</p>
+                    <button class="new-order-btn" id="newOrderBtn">
+                        <i class="fas fa-utensils"></i>
+                        <span>Order Another Meal</span>
+                    </button>
+                </div>
+            </section>
+        </main>
+
+        <!-- ===== PREMIUM FOOTER ===== -->
+        <footer class="footer">
+            <div class="runway-line"></div>
+            <p class="footer-text">SkyLink Menu - Elevating Your Dining Experience</p>
+        </footer>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="script.js"></script>
+</body>
+</html>

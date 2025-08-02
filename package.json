@@ -1,0 +1,60 @@
+{
+  "name": "myportfolio",
+  "version": "1.0.0",
+  "description": "Ashley Smith's Full Stack Developer Portfolio - Premium aviation-themed showcase featuring multiple interactive projects, secure authentication systems, and professional web applications.",
+  "keywords": ["portfolio", "full-stack", "developer", "aviation", "express", "nodejs", "web-development", "authentication", "responsive-design"],
+  "license": "ISC",
+  "author": "Ashley Smith <ashleysmith@example.com>",
+  "type": "commonjs",
+  "main": "server.js",
+  
+  "//": "=== SCRIPT COMMANDS ===",
+  "//scripts": {
+    "devStart": "Development server with auto-restart on file changes using nodemon",
+    "dev": "TypeScript development server with hot reloading for TypeScript projects", 
+    "start": "Production server startup command for deployment environments"
+  },
+  "scripts": {
+    "devStart": "nodemon server.js",
+    "dev": "ts-node-dev src/index.ts",
+    "start": "node server.js"
+  },
+  
+  "//": "=== PRODUCTION DEPENDENCIES ===",
+  "//dependencies": {
+    "bcryptjs": "Password hashing and verification for secure user authentication",
+    "cors": "Cross-Origin Resource Sharing middleware for API access control",
+    "ejs": "Embedded JavaScript templating engine for dynamic HTML generation",
+    "express": "Fast, unopinionated web framework for Node.js - powers the portfolio server",
+    "express-rate-limit": "Rate limiting middleware to prevent abuse and enhance security",
+    "helmet": "Security middleware that sets various HTTP headers for protection",
+    "jsonwebtoken": "JSON Web Token implementation for secure user session management",
+    "morgan": "HTTP request logger middleware for debugging and monitoring",
+    "mysql2": "MySQL database driver with Promise support for data persistence",
+    "ts-node-dev": "TypeScript execution and development server with hot reloading",
+    "typescript": "TypeScript compiler and language support for type-safe development"
+  },
+  "dependencies": {
+    "bcryptjs": "^3.0.2",
+    "cors": "^2.8.5",
+    "ejs": "^3.1.10",
+    "express": "^5.1.0",
+    "express-rate-limit": "^8.0.1",
+    "helmet": "^8.1.0",
+    "jsonwebtoken": "^9.0.2",
+    "morgan": "^1.10.1",
+    "mysql2": "^3.14.2",
+    "ts-node-dev": "^2.0.0",
+    "typescript": "^5.8.3"
+  },
+  
+  "//": "=== DEVELOPMENT DEPENDENCIES ===",
+  "//devDependencies": {
+    "dotenv": "Environment variable loader for development configuration management",
+    "nodemon": "Development tool that automatically restarts server on file changes"
+  },
+  "devDependencies": {
+    "dotenv": "^17.2.1",
+    "nodemon": "^3.1.10"
+  }
+}

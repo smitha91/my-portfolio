@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Secure Login System - Ashley Smith</title>
+    <style>
+        /* ===== PREMIUM SECURE LOGIN SYSTEM STYLING ===== */
+        /* Import premium fonts */
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap');
+        
+        /* ===== CSS RESET AND FOUNDATION ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(145deg, #0a1628 0%, #1b365d 50%, #2c5aa0 100%);
+            color: #F7FAFC;
+            line-height: 1.6;
+            min-height: 100vh;
+            position: relative;
+            overflow-x: hidden;
+        }
+        
+        /* Premium aviation runway lines background pattern */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: 
+                repeating-linear-gradient(
+                    90deg,
+                    transparent,
+                    transparent 60px,
+                    rgba(99, 179, 237, 0.02) 62px,
+                    rgba(99, 179, 237, 0.02) 64px
+                ),
+                repeating-linear-gradient(
+                    0deg,
+                    transparent,
+                    transparent 120px,
+                    rgba(99, 179, 237, 0.015) 122px,
+                    rgba(99, 179, 237, 0.015) 124px
+                );
+            z-index: -1;
+            pointer-events: none;
+        }
+        
+        /* Main container with premium cabin feel */
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 2rem;
+            position: relative;
+        }
+        
+        /* Premium navigation styling */
+        .nav-home {
+            position: fixed;
+            top: 30px;
+            left: 30px;
+            z-index: 1000;
+        }
+        
+        .nav-home a {
+            text-decoration: none;
+            color: #63B3ED;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 20px;
+            background: rgba(99, 179, 237, 0.08);
+            border: 1px solid rgba(99, 179, 237, 0.3);
+            border-radius: 25px;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            backdrop-filter: blur(20px);
+            font-family: 'Orbitron', monospace;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+        
+        .nav-home a:hover {
+            background: rgba(99, 179, 237, 0.15);
+            border-color: rgba(99, 179, 237, 0.5);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(99, 179, 237, 0.15);
+            color: #F7FAFC;
+        }
+        
+        /* Premium header styling */
+        .header {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding: 3rem 2rem;
+            background: linear-gradient(145deg, rgba(10, 22, 40, 0.95), rgba(27, 54, 93, 0.85));
+            border: 1px solid rgba(99, 179, 237, 0.15);
+            border-radius: 20px;
+            position: relative;
+            backdrop-filter: blur(20px);
+            overflow: hidden;
+        }
+        
+        /* Header premium accent */
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(to right, rgba(99, 179, 237, 0.3), rgba(144, 205, 244, 0.5), rgba(99, 179, 237, 0.3));
+            animation: premiumGlow 4s ease-in-out infinite alternate;
+        }
+        
+        @keyframes premiumGlow {
+            0% { opacity: 0.6; }
+            100% { opacity: 1; }
+        }
+        
+        /* Security icon styling */
+        .emoji {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            display: block;
+            text-shadow: 0 0 20px rgba(99, 179, 237, 0.5);
+        }
+        
+        /* Main title styling */
+        h1 {
+            font-size: 3rem;
+            font-weight: 300;
+            color: #F7FAFC;
+            margin-bottom: 1rem;
+            letter-spacing: -0.02em;
+            text-shadow: 0 2px 20px rgba(99, 179, 237, 0.3);
+            font-family: 'Inter', sans-serif;
+            line-height: 1.1;
+        }
+        
+        /* Subtitle styling */
+        .header p {
+            font-size: 1.125rem;
+            color: #CBD5E0;
+            max-width: 600px;
+            margin: 0 auto;
+            border-left: 2px solid rgba(99, 179, 237, 0.4);
+            padding-left: 20px;
+            font-weight: 400;
+        }
+        
+        /* Section styling - premium cabin sections */
+        .welcome-section, .user-info {
+            background: linear-gradient(145deg, rgba(10, 22, 40, 0.8), rgba(27, 54, 93, 0.6));
+            border: 1px solid rgba(99, 179, 237, 0.15);
+            border-radius: 20px;
+            padding: 3rem;
+            margin: 3rem 0;
+            position: relative;
+            backdrop-filter: blur(20px);
+            overflow: hidden;
+        }
+        
+        /* Section premium grid background */
+        .welcome-section::before, .user-info::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: 
+                linear-gradient(rgba(99, 179, 237, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(99, 179, 237, 0.03) 1px, transparent 1px);
+            background-size: 30px 30px;
+            z-index: 0;
+        }
+        
+        /* Section content positioning */
+        .welcome-section > *, .user-info > * {
+            position: relative;
+            z-index: 1;
+        }
+        
+        /* Section headers */
+        h2, h3 {
+            color: #90CDF4;
+            font-family: 'Orbitron', monospace;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+        }
+        
+        h2 {
+            font-size: 1.5rem;
+        }
+        
+        h3 {
+            font-size: 1.25rem;
+        }
+        
+        /* Feature list styling */
+        .feature-list {
+            display: grid;
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+        
+        .feature-item {
+            background: rgba(10, 22, 40, 0.6);
+            padding: 2rem;
+            border-radius: 15px;
+            border: 1px solid rgba(99, 179, 237, 0.1);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            backdrop-filter: blur(10px);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .feature-item::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: linear-gradient(to bottom, #63B3ED, #90CDF4);
+        }
+        
+        .feature-item:hover {
+            background: rgba(99, 179, 237, 0.1);
+            border-color: #63B3ED;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(99, 179, 237, 0.15);
+        }
+        
+        .feature-item strong {
+            color: #F7FAFC;
+            font-size: 1.1rem;
+            font-family: 'Orbitron', monospace;
+            letter-spacing: 0.05em;
+        }
+        
+        /* Authentication actions */
+        .auth-actions {
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+            margin: 3rem 0;
+            flex-wrap: wrap;
+        }
+        
+        /* Button styling - premium aviation controls */
+        .btn {
+            background: linear-gradient(145deg, #28a745, #218838);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 12px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 500;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            font-family: 'Inter', sans-serif;
+            letter-spacing: 0.05em;
+            position: relative;
+            overflow: hidden;
+            text-transform: uppercase;
+        }
+        
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s;
+        }
+        
+        .btn:hover::before {
+            left: 100%;
+        }
+        
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(40, 167, 69, 0.3);
+        }
+        
+        .btn-secondary {
+            background: linear-gradient(145deg, #007bff, #0056b3);
+        }
+        
+        .btn-secondary:hover {
+            box-shadow: 0 8px 25px rgba(0, 123, 255, 0.3);
+        }
+        
+        /* User info panel - special authenticated styling */
+        .user-info {
+            background: linear-gradient(145deg, rgba(72, 187, 120, 0.15), rgba(72, 187, 120, 0.1));
+            border-color: rgba(72, 187, 120, 0.3);
+            text-align: center;
+        }
+        
+        .user-info::before {
+            background-image: 
+                linear-gradient(rgba(72, 187, 120, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(72, 187, 120, 0.03) 1px, transparent 1px);
+        }
+        
+        /* Welcome messages */
+        .welcome-section p, .user-info p {
+            color: #F7FAFC;
+            font-size: 1.1rem;
+            line-height: 1.7;
+            margin-bottom: 1rem;
+        }
+        
+        /* Status indicators */
+        .status-indicator {
+            display: inline-block;
+            padding: 6px 12px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            margin-left: 12px;
+            font-family: 'Orbitron', monospace;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+        }
+        
+        .status-active {
+            background: rgba(72, 187, 120, 0.15);
+            color: #48BB78;
+            border: 1px solid rgba(72, 187, 120, 0.3);
+        }
+        
+        .status-secure {
+            background: rgba(99, 179, 237, 0.15);
+            color: #63B3ED;
+            border: 1px solid rgba(99, 179, 237, 0.3);
+        }
+        
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .container {
+                padding: 1rem;
+            }
+            
+            .header {
+                padding: 2rem 1rem;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .welcome-section, .user-info {
+                padding: 2rem 1rem;
+            }
+            
+            .nav-home {
+                position: static;
+                margin-bottom: 2rem;
+            }
+            
+            .auth-actions {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+        
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .welcome-section, .user-info {
+            animation: fadeIn 0.6s ease-out;
+        }
+    </style>
+        
+        .nav-home a:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+        
+        .welcome-section {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 25px;
+            margin: 20px 0;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .feature-list {
+            display: grid;
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        .feature-item {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .auth-actions {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin: 30px 0;
+            flex-wrap: wrap;
+        }
+        
+        .btn {
+            background: #28a745;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 500;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.2s;
+        }
+        
+        .btn:hover {
+            background: #218838;
+            transform: translateY(-1px);
+        }
+        
+        .btn-secondary {
+            background: #007bff;
+        }
+        
+        .btn-secondary:hover {
+            background: #0056b3;
+        }
+        
+        .user-info {
+            background: rgba(40, 167, 69, 0.2);
+            border: 1px solid #28a745;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+            text-align: center;
+        }
+        
+        h1, h2, h3 { color: #fff; }
+        .emoji { font-size: 2em; margin-bottom: 10px; }
+    </style>
+</head>
+<body id="top">
+    <div class="nav-home">
+        <a href="/">
+            ✈️
+            <span>Back to Portfolio</span>
+        </a>
+    </div>
+
+    <div class="header">
+        <div class="emoji">🔐</div>
+        <h1>Secure Login System</h1>
+        <p>Advanced authentication with session management and security protocols</p>
+    </div>
+
+    <!-- This will be populated by JavaScript based on login status -->
+    <div id="auth-content">
+        <div class="welcome-section">
+            <h2>🚀 Ephemeral Authentication Demo</h2>
+            <p>This system demonstrates temporary session-based authentication:</p>
+            
+            <div class="feature-list">
+                <div class="feature-item">
+                    <strong>� Fresh Sessions Only</strong><br>
+                    Every interaction requires new registration - no persistent accounts
+                </div>
+                <div class="feature-item">
+                    <strong>🎫 Temporary Sessions</strong><br>
+                    Session data exists only while logged in
+                </div>
+                <div class="feature-item">
+                    <strong>�️ Complete Data Disposal</strong><br>
+                    All user data is discarded upon logout
+                </div>
+                <div class="feature-item">
+                    <strong>� Zero Persistence</strong><br>
+                    No databases, no permanent storage, completely ephemeral
+                </div>
+            </div>
+        </div>
+
+        <div class="auth-actions">
+            <a href="/login/register" class="btn">Create Temporary Account</a>
+            <div style="margin-top: 15px; padding: 15px; background: rgba(255, 193, 7, 0.1); border: 1px solid #ffc107; border-radius: 6px; font-size: 14px;">
+                <strong>ℹ️ Note:</strong> Registration creates an immediate temporary session. No persistent login available.
+            </div>
+        </div>
+    </div>
+
+    <div class="welcome-section">
+        <h3>🔧 Technical Implementation</h3>
+        <p>Built with Node.js, Express.js, and EJS templating. Features secure authentication flows, password encryption, and session management for a complete user authentication experience.</p>
+    </div>
+
+    <script>
+        async function checkLoginStatus() {
+            const sessionId = localStorage.getItem('sessionId');
+            if (!sessionId) return;
+            
+            try {
+                const response = await fetch(`/login/status?sessionId=${sessionId}`);
+                const data = await response.json();
+                
+                if (data.loggedIn) {
+                    showLoggedInContent(data.user);
+                }
+            } catch (error) {
+                console.error('Error checking login status:', error);
+            }
+        }
+        
+        function showLoggedInContent(user) {
+            const authContent = document.getElementById('auth-content');
+            authContent.innerHTML = `
+                <div class="user-info">
+                    <h2>✅ Welcome back, ${user.username}!</h2>
+                    <p>You are successfully logged in to the secure system.</p>
+                    <p><strong>Session Status:</strong> Active & Authenticated</p>
+                    <p><strong>Email:</strong> ${user.email}</p>
+                    <button onclick="logout()" class="btn btn-secondary">Logout</button>
+                </div>
+            `;
+        }
+        
+        async function logout() {
+            try {
+                const sessionId = localStorage.getItem('sessionId');
+                const response = await fetch('/login/logout', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-Session-Id': sessionId
+                    }
+                });
+                
+                if (response.ok) {
+                    localStorage.removeItem('sessionId');
+                    window.location.reload();
+                } else {
+                    alert('Logout failed');
+                }
+            } catch (error) {
+                console.error('Logout error:', error);
+                alert('Logout failed');
+            }
+        }
+        
+        // Check login status when page loads
+        document.addEventListener('DOMContentLoaded', checkLoginStatus);
+
+        // Back to top airplane visibility
+        window.addEventListener('scroll', function() {
+            const backToTop = document.getElementById('backToTop');
+            if (window.pageYOffset > 300) {
+                backToTop.style.opacity = '1';
+                backToTop.style.visibility = 'visible';
+            } else {
+                backToTop.style.opacity = '0';
+                backToTop.style.visibility = 'hidden';
+            }
+        });
+    </script>
+    
+    <!-- ===== BACK TO TOP AIRPLANE ===== -->
+    <div id="backToTop" style="position: fixed; bottom: 30px; right: 30px; z-index: 1000; opacity: 0; visibility: hidden; transition: all 0.3s ease;">
+        <a href="#top" style="display: flex; align-items: center; justify-content: center; width: 60px; height: 60px; background: linear-gradient(145deg, #2563eb, #1d4ed8); color: white; border-radius: 50%; text-decoration: none; box-shadow: 0 4px 15px rgba(37, 99, 235, 0.3); transition: all 0.3s ease; font-size: 24px;" 
+           onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='0 8px 25px rgba(37, 99, 235, 0.4)'"
+           onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 15px rgba(37, 99, 235, 0.3)'">
+            ✈️
+        </a>
+    </div>
+</body>
+</html>

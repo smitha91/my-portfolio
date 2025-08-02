@@ -1,0 +1,97 @@
+<!Doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Charlotte's Ice Cream </title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+<div style="position: fixed; top: 20px; left: 20px; z-index: 1000;">
+    <a href="/" style="text-decoration: none; color: #ff69b4; display: flex; align-items: center; gap: 8px; padding: 8px 12px; background: rgba(255, 255, 255, 0.9); border: 2px solid #ff69b4; border-radius: 25px; transition: all 0.2s; box-shadow: 0 2px 10px rgba(0,0,0,0.1); font-family: Arial, sans-serif; font-weight: 500;" 
+       onmouseover="this.style.background='#ff69b4'; this.style.color='white'; this.style.transform='translateY(-2px)'"
+       onmouseout="this.style.background='rgba(255, 255, 255, 0.9)'; this.style.color='#ff69b4'; this.style.transform='translateY(0)'">
+        ✈️
+        <span style="font-size: 14px;">Back to Portfolio</span>
+    </a>
+</div>
+<div class = "fullPage">
+    <h1> Welcome to Charlotte's Ice Cream Shop</h1>
+    <p>We’re delighted to bring a scoop of happiness right to your neighborhood, serving freshly churned gourmet ice cream with a smile. Every flavor is crafted with passion and premium ingredients, making each treat a little celebration.<br> Whether you catch us at the park, an event, or just rolling down your street, we can’t wait to share our love for sweet, creamy indulgence with you. Thanks for stopping by! </p>
+
+    <p><br> What set's us apart? Our ice cream is not just a dessert; it's an experience. We use locally sourced ingredients and unique flavor combinations that you won't find anywhere else. From classic favorites to seasonal specials, there's always something new to try.
+    <br></p>
+
+        <img class="mainPhoto" src="images/charOnBike.jpg" alt="Charlotte on her ice cream bike">
+
+        <p><br>Your next favorite ice cream flavor is just a pedal away!</p>
+    
+
+    <hr>
+    <!-- ===== DAILY SPECIALS SECTION ===== -->
+    <!-- Interactive ice cream showcase - JavaScript adds click functionality -->
+    <h3>Our daily specials</h3>
+    
+    <!-- ===== VANILLA ICE CREAM ===== -->
+    <!-- JavaScript will make this image clickable for detailed modal view -->
+    <h4>Vanilla Ice Cream</h4>
+    $12.95 - per serving
+    <br>
+    <!-- Interactive image - click to view flavor details and order -->
+    <img src="images/vanillaIC.png" alt="bowl of vanilla ice cream">
+    <br>
+    
+    <!-- ===== CHOCOLATE ICE CREAM ===== -->
+    <!-- JavaScript will make this image clickable for detailed modal view -->
+    <h4>Chocolate Ice Cream</h4>
+    $12.95 - per serving
+    <br>
+    <!-- Interactive image - click to view flavor details and order -->
+    <img src="images/chocolateIC.png" alt="bowl of chocolate ice cream">
+    <br>
+    
+    <!-- ===== STRAWBERRY ICE CREAM ===== -->
+    <!-- JavaScript will make this image clickable for detailed modal view -->
+    <h4>Strawberry Ice Cream</h4>
+    $12.95 - per serving
+    <br>
+    <!-- Interactive image - click to view flavor details and order -->
+    <img src="images/strawberryIC.png" alt="bowl of strawberry ice cream">
+    <br>
+
+</div>
+    
+    <!-- ===== FOOTER ===== -->
+    <!-- Copyright notice -->
+    <small>© 2025 Charlotte's Ice Cream. All rights reserved.</small>
+    
+    <!-- ===== BACK TO HOME ICE CREAM CONE ===== -->
+    <div id="backToHome" style="position: fixed; bottom: 30px; right: 30px; z-index: 1000; opacity: 0; visibility: hidden; transition: all 0.3s ease;">
+        <a href="/" style="display: flex; align-items: center; justify-content: center; width: 60px; height: 60px; background: linear-gradient(145deg, #ff69b4, #e91e63); color: white; border-radius: 50%; text-decoration: none; box-shadow: 0 4px 15px rgba(255, 105, 180, 0.3); transition: all 0.3s ease; font-size: 24px;" 
+           onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='0 8px 25px rgba(255, 105, 180, 0.4)'"
+           onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 15px rgba(255, 105, 180, 0.3)'">
+            🍦
+        </a>
+    </div>
+    
+    <!-- ===== JAVASCRIPT ===== -->
+    <!-- Load external JavaScript file for interactive functionality -->
+    <!-- Features: modal system, order management, animations, time-based greetings -->
+    <script src="script.js"></script>
+    
+    <!-- Back to home ice cream cone visibility script -->
+    <script>
+        window.addEventListener('scroll', function() {
+            const backToHome = document.getElementById('backToHome');
+            if (window.pageYOffset > 300) {
+                backToHome.style.opacity = '1';
+                backToHome.style.visibility = 'visible';
+            } else {
+                backToHome.style.opacity = '0';
+                backToHome.style.visibility = 'hidden';
+            }
+        });
+    </script>
+</body>
+</html>

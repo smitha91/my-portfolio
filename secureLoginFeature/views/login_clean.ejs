@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Secure Authentication</title>
+    <style>
+        /* ===== PREMIUM SECURE LOGIN STYLING ===== */
+        /* Import premium fonts */
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap');
+        
+        /* ===== CSS RESET AND FOUNDATION ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(145deg, #0a1628 0%, #1b365d 50%, #2c5aa0 100%);
+            color: #F7FAFC;
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 20px;
+            position: relative;
+            overflow-x: hidden;
+        }
+        
+        /* Premium aviation runway lines background pattern */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: 
+                repeating-linear-gradient(
+                    90deg,
+                    transparent,
+                    transparent 60px,
+                    rgba(99, 179, 237, 0.02) 62px,
+                    rgba(99, 179, 237, 0.02) 64px
+                ),
+                repeating-linear-gradient(
+                    0deg,
+                    transparent,
+                    transparent 120px,
+                    rgba(99, 179, 237, 0.015) 122px,
+                    rgba(99, 179, 237, 0.015) 124px
+                );
+            z-index: -1;
+            pointer-events: none;
+        }
+        
+        /* Premium navigation styling */
+        .nav-home {
+            position: fixed;
+            top: 30px;
+            left: 30px;
+            z-index: 1000;
+        }
+        
+        .nav-home a {
+            text-decoration: none;
+            color: #63B3ED;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 20px;
+            background: rgba(99, 179, 237, 0.08);
+            border: 1px solid rgba(99, 179, 237, 0.3);
+            border-radius: 25px;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            backdrop-filter: blur(20px);
+            font-family: 'Orbitron', monospace;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+        
+        .nav-home a:hover {
+            background: rgba(99, 179, 237, 0.15);
+            border-color: rgba(99, 179, 237, 0.5);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(99, 179, 237, 0.15);
+            color: #F7FAFC;
+        }
+        
+        /* Premium login container */
+        .login-container {
+            max-width: 450px;
+            margin: 0 auto;
+            background: linear-gradient(145deg, rgba(10, 22, 40, 0.95), rgba(27, 54, 93, 0.85));
+            border: 1px solid rgba(99, 179, 237, 0.15);
+            border-radius: 20px;
+            padding: 3rem;
+            position: relative;
+            backdrop-filter: blur(20px);
+            overflow: hidden;
+        }
+        
+        /* Container premium accent */
+        .login-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(to right, rgba(99, 179, 237, 0.3), rgba(144, 205, 244, 0.5), rgba(99, 179, 237, 0.3));
+            animation: premiumGlow 4s ease-in-out infinite alternate;
+        }
+        
+        @keyframes premiumGlow {
+            0% { opacity: 0.6; }
+            100% { opacity: 1; }
+        }
+        
+        /* Header styling */
+        .login-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        
+        .emoji {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            display: block;
+            text-shadow: 0 0 20px rgba(99, 179, 237, 0.5);
+        }
+        
+        h1 {
+            font-size: 1.8rem;
+            font-weight: 300;
+            color: #F7FAFC;
+            margin-bottom: 0.5rem;
+            letter-spacing: -0.02em;
+            text-shadow: 0 2px 20px rgba(99, 179, 237, 0.3);
+            font-family: 'Inter', sans-serif;
+        }
+        
+        .login-header p {
+            color: #CBD5E0;
+            font-size: 1rem;
+            font-weight: 400;
+            margin-bottom: 1rem;
+        }
+        
+        /* Button styling */
+        .btn {
+            display: block;
+            width: 100%;
+            max-width: 300px;
+            margin: 2rem auto;
+            background: linear-gradient(145deg, #28a745, #218838);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 12px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 500;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            font-family: 'Inter', sans-serif;
+            letter-spacing: 0.05em;
+            position: relative;
+            overflow: hidden;
+            text-transform: uppercase;
+            text-decoration: none;
+            text-align: center;
+        }
+        
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s;
+        }
+        
+        .btn:hover::before {
+            left: 100%;
+        }
+        
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(40, 167, 69, 0.3);
+        }
+        
+        /* Notice box styling */
+        .notice-box {
+            background: rgba(220, 53, 69, 0.1);
+            border: 1px solid rgba(220, 53, 69, 0.3);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin: 2rem auto;
+            backdrop-filter: blur(10px);
+            max-width: 400px;
+            text-align: center;
+        }
+        
+        .notice-box strong {
+            color: #FBB6CE;
+            font-family: 'Orbitron', monospace;
+            letter-spacing: 0.05em;
+        }
+        
+        /* Auth links */
+        .auth-links {
+            text-align: center;
+            margin-top: 2rem;
+        }
+        
+        .auth-links a {
+            color: #63B3ED;
+            text-decoration: none;
+            font-family: 'Orbitron', monospace;
+            letter-spacing: 0.05em;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+        
+        .auth-links a:hover {
+            color: #90CDF4;
+            text-shadow: 0 0 10px rgba(99, 179, 237, 0.5);
+        }
+        
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .login-container {
+                padding: 2rem 1rem;
+                margin: 1rem;
+            }
+            
+            .nav-home {
+                position: static;
+                margin-bottom: 2rem;
+            }
+            
+            h1 {
+                font-size: 1.5rem;
+            }
+        }
+        
+        /* Animation */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .login-container {
+            animation: fadeIn 0.6s ease-out;
+        }
+    </style>
+</head>
+<body>
+    <div class="nav-home">
+        <a href="/">
+            ✈️
+            <span>Portfolio</span>
+        </a>
+    </div>
+
+    <div class="login-container">
+        <div class="login-header">
+            <div class="emoji">🔐</div>
+            <h1>No Persistent Login Available</h1>
+            <p>This system uses ephemeral sessions only</p>
+        </div>
+
+        <a href="/login/register" class="btn">Create New Temporary Session</a>
+
+        <div class="notice-box">
+            <strong>ℹ️ Notice:</strong> No persistent accounts exist. Please create a new temporary session instead.
+        </div>
+
+        <div class="auth-links">
+            <p><a href="/login">Back to Secure System</a></p>
+        </div>
+    </div>
+</body>
+</html>
